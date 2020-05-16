@@ -3,10 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <title>parcel app</title>
-    <link rel="stylesheet" href="./style.scss" />
+    <link rel="stylesheet" href="./styles/main.scss" />
   </head>
   <body>
-    <div id="js-main" class="main"></div>
+    <div class="main">
+      <h1>Google map task</h1>
+      <div class="map">
+        <div class="map__container"></div>
+        <div class="map__instruction">
+          Kliknij i dodaj lokalizacje
+        </div>
+        <div class="map__new-location map__new-location--hide">
+          <img
+            class="map__new-location-icon"
+            src="./assets/location-marker.svg"
+          />
+          <label class="map__new-location-label">
+            Nazwa lokacji:
+            <input
+              type="text"
+              name="locationName"
+              class="map__new-location-input"
+              placeholder="np. Firma XYz"
+            />
+          </label>
+          <button class="map__new-location-button">Dodaj</button>
+        </div>
+      </div>
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKkxIj91FRLglqxMTdBa87aV8eWngd4SY"></script>
     <script src="./index.ts"></script>
   </body>
 </html>
