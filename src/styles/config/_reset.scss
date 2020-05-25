@@ -1,7 +1,7 @@
 :root {
   font-family: $font-family;
-  color: $color-primary;
-  background: $background-primary;
+  color: nth($black, 1);
+  background: nth($gray, 1);
 }
 
 html {

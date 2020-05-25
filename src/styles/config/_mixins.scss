@@ -1,0 +1,14 @@
+@mixin mq($breakPoint) {
+    $size: map-get($breakPoints, $breakPoint);
+
+    @if ($size) {
+        @media #{$size} {
+            @content;
+        }
+    }
+
+    @else {
+        @error 'check your breakPoint !';
+
+    }
+}

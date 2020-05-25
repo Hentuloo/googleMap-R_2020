@@ -4,34 +4,80 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>parcel app</title>
-    <link rel="stylesheet" href="./styles/main.scss" />
+    <link rel="stylesheet" href="./styles/root.scss" />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;800&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <div class="main">
-      <h1>Google map task</h1>
-      <div class="map">
-        <div class="map__container"></div>
-        <div class="map__instruction">
-          Kliknij i dodaj lokalizacje
-        </div>
-        <div class="map__new-location map__new-location--hide">
-          <img
-            class="map__new-location-icon"
-            src="./assets/location-marker.svg"
-          />
-          <label class="map__new-location-label">
-            Nazwa lokacji:
+      <header class="header">
+        <h1 class="header__title sr-only">Google map quiz</h1>
+        <section class="header__card card card--hidden">
+          <h2 class="card__title">Co to?</h2>
+          <p class="card__content">
+            Aplikacja jest luźną formą sprawdzenia wiedzy o geografi, zabawa
+            odbywa się w formie Quiz. Na mapie wyświetlany jest punkt, a naszym
+            zadaniem jest wprowadzić nazwę z czego jest znane te miejsce.
+          </p>
+        </section>
+        <button class="header__button button button--circled" title="Co to?">
+          <span class="fa fa-question" aria-hidden="true"></span>
+        </button>
+      </header>
+      <aside class="aside card">
+        <h3 class="aside__title card__title">Wspierane quizy:</h3>
+        <ul class="aside__list card__content">
+          <li class="card__list-item">Polska</li>
+        </ul>
+      </aside>
+      <div class="game card">
+        <h4 class="game__title card__title">Z czego słynie to miejsce:</h4>
+        <div class="game__content card__content">
+          <label class="input__label input__label--radio">
             <input
-              type="text"
-              name="locationName"
-              class="map__new-location-input"
-              placeholder="np. Firma XYz"
+              class="input input--radio"
+              type="radio"
+              name="sth"
+              value="v1"
             />
+            <span class="input__text">Option 1</span>
           </label>
-          <button class="map__new-location-button">Dodaj</button>
+          <label class="input__label input__label--radio">
+            <input
+              class="input input--radio"
+              type="radio"
+              name="sth"
+              value="v2"
+            />
+            <span class="input__text">Option 2</span>
+          </label>
+          <label class="input__label input__label--radio">
+            <input
+              class="input input--radio"
+              type="radio"
+              name="sth"
+              value="v3"
+            />
+            <span class="input__text">Option 3</span>
+          </label>
         </div>
-      </div>
-    </div>
+        <div class="game__scores">
+          <span class="game__score">PKT: 30</span>
+          <span class="game__score">2/10</span>
+        </div>
+        </div>
+        <div class="main__map map">
+          <div class="map__container"></div>
+        </div>
+      </main>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCKkxIj91FRLglqxMTdBa87aV8eWngd4SY"></script>
     <script src="./index.ts"></script>
   </body>

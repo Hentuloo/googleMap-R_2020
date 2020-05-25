@@ -1,0 +1,31 @@
+.input {
+
+    &--radio {
+        display: none;
+
+        &:checked~* {
+            background: nth($brand, 3);
+
+        }
+    }
+
+    &__label {
+        &--radio {
+            cursor: pointer;
+        }
+    }
+
+    &__text {
+        display: block;
+        width: 100%;
+        background-color: nth($brand, 1);
+        padding: 10px 10px;
+        text-align: center;
+        font-weight: 800;
+        border-radius: 7px;
+
+        &:hover {
+            background-color: nth($brand, 2);
+        }
+    }
+}

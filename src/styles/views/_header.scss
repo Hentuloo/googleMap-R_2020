@@ -1,0 +1,12 @@
+.header {
+    display: grid;
+    grid-column: 1/-1;
+    justify-items: end;
+    align-items: center;
+
+
+    &__button {
+        height: 40px;
+        width: 40px;
+    }
+}
