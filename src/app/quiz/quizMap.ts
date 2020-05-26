@@ -11,6 +11,8 @@ export type LoadCitiesMarkersResponse = CityMarker[];
 
 export const initMap = (containerName: string) => {
   return init(containerName, {
+    disableDefaultUI: true,
+
     styles: [
       { elementType: "geometry", stylers: [{ color: "#252525" }] },
       { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
@@ -18,38 +20,38 @@ export const initMap = (containerName: string) => {
       {
         featureType: "administrative.locality",
         elementType: "labels.text.fill",
-        stylers: [{ color: "#d59563" }],
+        stylers: [{ color: "#ffffff" }],
       },
       {
         featureType: "poi",
         elementType: "labels.text.fill",
-        stylers: [{ color: "#d59563" }],
+        stylers: [{ color: "" }],
       },
 
       {
         featureType: "road",
         elementType: "geometry",
-        stylers: [{ color: "#38414e" }],
+        stylers: [{ color: "#000000" }],
       },
       {
         featureType: "road",
         elementType: "geometry.stroke",
-        stylers: [{ color: "#333" }],
+        stylers: [{ color: "#252525" }],
       },
       {
         featureType: "road",
         elementType: "labels.text.fill",
-        stylers: [{ color: "#9ca5b3" }],
+        stylers: [{ color: "#252525" }],
       },
       {
         featureType: "road.highway",
         elementType: "geometry",
-        stylers: [{ color: "#746855" }],
+        stylers: [{ color: "#252525" }],
       },
       {
         featureType: "road.highway",
         elementType: "geometry.stroke",
-        stylers: [{ color: "#1f2835" }],
+        stylers: [{ color: "#000000" }],
       },
       {
         featureType: "road.highway",
@@ -64,7 +66,7 @@ export const initMap = (containerName: string) => {
       {
         featureType: "transit.station",
         elementType: "labels.text.fill",
-        stylers: [{ color: "#d59563" }],
+        stylers: [{ color: "#ffffff" }],
       },
       {
         featureType: "water",
@@ -79,7 +81,7 @@ export const initMap = (containerName: string) => {
       {
         featureType: "water",
         elementType: "labels.text.stroke",
-        stylers: [{ color: "#17263c" }],
+        stylers: [{ color: "#000000" }],
       },
       {
         featureType: "poi",
@@ -119,15 +121,19 @@ export const initMap = (containerName: string) => {
 
 export const loadCitiesMarkers = (
   map: google.maps.Map<Element>,
-  countryName: string
+  countryName: string,
+  move?: boolean
 ): LoadCitiesMarkersResponse | void => {
   const country = quizCountries[countryName];
-
   if (!country) {
     return console.error("There is no such country (quiz/quizMap)");
   }
 
-  const { cities } = quizCities[country.citiesId];
+  const { cities, lng, lat } = quizCities[country.citiesId];
+  if (move) {
+    const center = new google.maps.LatLng(lat, lng);
+    map.panTo(center);
+  }
   return cities.map((city) => {
     const { lat, lng } = city;
     const marker = createMarker(map, new google.maps.LatLng(lat, lng), {

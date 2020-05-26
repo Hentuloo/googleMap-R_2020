@@ -4,6 +4,7 @@ import {
   showCityQuiz,
   showNewPoints,
   showEndGameStatement,
+  chooseCountryStatement,
 } from "./quizDashboard";
 import { onClickCountry } from "./quizCountries";
 import {
@@ -21,11 +22,12 @@ export default () => {
   let isActiveQuiz = false;
   let citiesMarkers: LoadCitiesMarkersResponse = [];
 
+  hideDashboard();
+  chooseCountryStatement();
   if (!map)
     return console.error(
       "there isn't container for map (.map__container) in quiz/index"
     );
-  hideDashboard();
 
   const clearMarkers = () => {
     citiesMarkers.forEach(({ marker }) => marker.setMap(null));
@@ -37,11 +39,12 @@ export default () => {
     score = 0;
     round = 0;
     hideDashboard();
-    clearMarkers();
+    chooseCountryStatement();
   };
 
   const endGame = () => {
     showEndGameStatement(score, round, onClickResetButton);
+    clearMarkers();
   };
 
   const startNewRound = (newPoints: number) => {
@@ -58,7 +61,7 @@ export default () => {
 
   const createCountryMarkers = () => {
     if (!activeCountry) return;
-    citiesMarkers = loadCitiesMarkers(map, activeCountry) || [];
+    citiesMarkers = loadCitiesMarkers(map, activeCountry, true) || [];
     citiesMarkers.map(({ marker, city }) =>
       marker.addListener("click", () => {
         if (isActiveQuiz) return;

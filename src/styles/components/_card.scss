@@ -10,6 +10,10 @@
         display: none;
     }
 
+    &--border {
+        border: white 3px solid;
+    }
+
     &__title {
         padding: 3px 5px 5px 10px;
         font-size: 2rem;

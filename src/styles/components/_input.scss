@@ -1,5 +1,4 @@
 .input {
-
     &--radio {
         display: none;
 
@@ -9,6 +8,9 @@
     }
 
     &__label {
+        margin: 10px 0px;
+        display: block;
+
         &--radio {
             cursor: pointer;
         }

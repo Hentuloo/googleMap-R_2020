@@ -1,6 +1,7 @@
 .game {
     display: grid;
-    min-height: 200px;
+    height: 250px;
+
     grid-template-columns: 1fr 100px;
     margin: 10px auto;
     overflow: hidden;
@@ -30,6 +31,7 @@
         align-items: center;
         justify-items: center;
         overflow-y: scroll;
+        margin: 10px 0px;
 
         @include mq(desktop) {
             min-height: auto;

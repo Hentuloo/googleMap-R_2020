@@ -18,6 +18,8 @@ export interface City {
 export interface Cities {
   [key: number]: {
     countryName: string;
+    lat: number;
+    lng: number;
     cities: City[];
   };
 }

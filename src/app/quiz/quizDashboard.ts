@@ -68,7 +68,6 @@ export const createContentItem = (
   input.setAttribute("class", "input input--radio");
   input.setAttribute("type", "radio");
   input.setAttribute("name", "quziRatio");
-  input.setAttribute("value", points.toString());
   input.addEventListener("click", () => onClick(points));
   const span = document.createElement("span");
   span.setAttribute("class", "input__text");
@@ -124,7 +123,7 @@ export const showNewPoints = (
   round: number
 ) => {
   displayNewTitle(
-    `Zdobyłeś <span>${newPoints}pkt!</span> Wybierzk kolejne dogodne miasto!`
+    `Zdobyłeś <span>${newPoints}pkt!</span> Wybierz kolejne miasto!`
   );
   displayNewPoints(score, round);
   toggleElementVisible(getContentEl(), "game__content--hide", true);
@@ -150,4 +149,7 @@ export const showEndGameStatement = (
   if (!content) return;
   content.innerHTML = "";
   content.appendChild(btn);
+};
+export const chooseCountryStatement = () => {
+  displayNewTitle(`Wybierz kraj z dostępnych quizów`);
 };
