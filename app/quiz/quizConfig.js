@@ -1,10 +1,8 @@
-import { Cities, Countries } from "./types";
-
-export const config = {
+const quizConfig = {
   rounds: 5,
 };
 
-export const quizCountries: Countries = {
+const quizCountries = {
   pl: {
     countryName: "POLAND",
     citiesId: 0,
@@ -15,7 +13,7 @@ export const quizCountries: Countries = {
   },
 };
 
-export const quizCities: Cities = {
+const quizCities = {
   0: {
     countryName: "POLAND",
     lat: 52.24462,

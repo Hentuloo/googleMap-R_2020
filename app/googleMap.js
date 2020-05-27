@@ -1,6 +1,4 @@
-import { googleMapConfig } from "./config";
-
-export const init = (selector: string, opts: google.maps.MapOptions = {}) => {
+const googleMapInit = (selector, opts = {}) => {
   const container = document.querySelector(selector);
   if (container) {
     return new google.maps.Map(container, {
@@ -11,16 +9,10 @@ export const init = (selector: string, opts: google.maps.MapOptions = {}) => {
   return null;
 };
 
-export const createMarker = (
-  map: google.maps.Map,
-  location: google.maps.LatLng,
-  opts?: google.maps.ReadonlyMarkerOptions
-) => {
+const createMarker = (map, location, opts) => {
   return new google.maps.Marker({
     position: location,
     map: map,
     ...opts,
   });
 };
-
-export default init;

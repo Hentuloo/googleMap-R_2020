@@ -1,16 +1,5 @@
-import { quizCountries, quizCities } from "./quizConfig";
-import init, { createMarker } from "../googleMap";
-import { City } from "./types";
-import placeSvg from "../../assets/markerPlace.svg";
-
-export interface CityMarker {
-  city: City;
-  marker: google.maps.Marker;
-}
-export type LoadCitiesMarkersResponse = CityMarker[];
-
-export const initMap = (containerName: string) => {
-  return init(containerName, {
+const quizInitMap = (containerName) => {
+  return googleMapInit(containerName, {
     disableDefaultUI: true,
 
     styles: [
@@ -119,11 +108,7 @@ export const initMap = (containerName: string) => {
   });
 };
 
-export const loadCitiesMarkers = (
-  map: google.maps.Map<Element>,
-  countryName: string,
-  move?: boolean
-): LoadCitiesMarkersResponse | void => {
+const loadCitiesMarkers = (map, countryName, move) => {
   const country = quizCountries[countryName];
   if (!country) {
     return console.error("There is no such country (quiz/quizMap)");
@@ -137,7 +122,7 @@ export const loadCitiesMarkers = (
   return cities.map((city) => {
     const { lat, lng } = city;
     const marker = createMarker(map, new google.maps.LatLng(lat, lng), {
-      icon: placeSvg,
+      icon: "app/quiz/markerPlace.svg",
     });
     return { city, marker };
   });

@@ -1,7 +1,4 @@
-import { City } from "./types";
-import { config } from "./quizConfig";
-
-const tryGetElement = (className: string) => {
+const tryGetElement = (className) => {
   const el = document.querySelector(className);
   if (!el) {
     console.error(`There isn't element such (${className})`);
@@ -9,7 +6,7 @@ const tryGetElement = (className: string) => {
   }
   return el;
 };
-const tryGetElements = (className: string) => {
+const tryGetElements = (className) => {
   const el = document.querySelectorAll(className);
   if (el.length === 0) {
     return console.error(`There isn't element such (${className})`);
@@ -28,25 +25,21 @@ const getRoundEl = () => {
   return el ? el[1] : null;
 };
 
-const toggleElementVisible = (
-  element: Element | null,
-  cl: string,
-  forceHide?: boolean
-) => {
+const toggleElementVisible = (element, cl, forceHide) => {
   if (forceHide === undefined) element && element.classList.toggle(cl);
   else {
     element && element.classList[forceHide ? "add" : "remove"](cl);
   }
 };
 
-export const hideDashboard = () => {
+const hideDashboard = () => {
   toggleElementVisible(getTitleEl(), "game__title--hide", true);
   toggleElementVisible(getContentEl(), "game__content--hide", true);
   toggleElementVisible(getPointsEl(), "game__score--hide", true);
   toggleElementVisible(getRoundEl(), "game__score--hide", true);
 };
 
-export const showChooseCityStatement = () => {
+const showChooseCityStatement = () => {
   const text = getTitleEl();
   if (text) {
     text.textContent = "Wskaż miasto na mapie";
@@ -57,11 +50,7 @@ export const showChooseCityStatement = () => {
   toggleElementVisible(getPointsEl(), "game__score--hide", true);
   toggleElementVisible(getRoundEl(), "game__score--hide", true);
 };
-export const createContentItem = (
-  points: number,
-  text: string,
-  onClick: (points: number) => void
-) => {
+const createContentItem = (points, text, onClick) => {
   const label = document.createElement("label");
   label.setAttribute("class", "input__label input__label--radio");
   const input = document.createElement("input");
@@ -79,10 +68,7 @@ export const createContentItem = (
   return label;
 };
 
-export const showCityQuiz = (
-  city: City,
-  onClickInput: (points: number) => void
-) => {
+const showCityQuiz = (city, onClickInput) => {
   const text = getTitleEl();
   if (text) {
     text.textContent = `Z czego najbardziej słynie ${city.name}:`;
@@ -100,45 +86,37 @@ export const showCityQuiz = (
 
   toggleElementVisible(content, "game__content--hide", false);
 };
-export const displayNewTitle = (title: string) => {
+const displayNewTitle = (title) => {
   const text = getTitleEl();
   if (text) {
     text.innerHTML = title;
     toggleElementVisible(text, "game__title--hide", false);
   }
 };
-export const displayNewPoints = (score: number, round: number) => {
+const displayNewPoints = (score, round) => {
   const points = getPointsEl();
   const rounds = getRoundEl();
   if (!points || !rounds) return;
   points.textContent = `PKT: ${score}/${round * 10}`;
-  rounds.textContent = `runda: ${round}/${config.rounds}`;
+  rounds.textContent = `runda: ${round}/${quizConfig.rounds}`;
   toggleElementVisible(points, "game__score--hide", false);
   toggleElementVisible(rounds, "game__score--hide", false);
 };
 
-export const showNewPoints = (
-  newPoints: number,
-  score: number,
-  round: number
-) => {
+const showNewPoints = (newPoints, score, round) => {
   displayNewTitle(
     `Zdobyłeś <span>${newPoints}pkt!</span> Wybierz kolejne miasto!`
   );
   displayNewPoints(score, round);
   toggleElementVisible(getContentEl(), "game__content--hide", true);
 };
-export const createButton = (text: string) => {
+const createButton = (text) => {
   const button = document.createElement("button");
   button.setAttribute("class", "button button--border");
   button.innerText = text;
   return button;
 };
-export const showEndGameStatement = (
-  score: number,
-  round: number,
-  handleAgainButton: (e: MouseEvent) => void
-) => {
+const showEndGameStatement = (score, round, handleAgainButton) => {
   displayNewTitle(
     `Koniec gry! Twój wynik to: <span>${score}/${round * 10}</span>`
   );
@@ -150,6 +128,6 @@ export const showEndGameStatement = (
   content.innerHTML = "";
   content.appendChild(btn);
 };
-export const chooseCountryStatement = () => {
+const chooseCountryStatement = () => {
   displayNewTitle(`Wybierz kraj z dostępnych quizów`);
 };

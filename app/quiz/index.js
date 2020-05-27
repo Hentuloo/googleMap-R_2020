@@ -1,26 +1,10 @@
-import {
-  hideDashboard,
-  showChooseCityStatement,
-  showCityQuiz,
-  showNewPoints,
-  showEndGameStatement,
-  chooseCountryStatement,
-} from "./quizDashboard";
-import { onClickCountry } from "./quizCountries";
-import {
-  loadCitiesMarkers,
-  LoadCitiesMarkersResponse,
-  initMap,
-} from "./quizMap";
-import { config } from "./quizConfig";
-
-export default () => {
-  let activeCountry: string | null = null;
+const quizGame = () => {
+  let activeCountry;
   let score = 0;
   let round = 0;
-  const map = initMap(".map__container");
+  const map = quizInitMap(".map__container");
   let isActiveQuiz = false;
-  let citiesMarkers: LoadCitiesMarkersResponse = [];
+  let citiesMarkers = [];
 
   hideDashboard();
   chooseCountryStatement();
@@ -47,12 +31,12 @@ export default () => {
     clearMarkers();
   };
 
-  const startNewRound = (newPoints: number) => {
-    if (config.rounds === round) return endGame();
+  const startNewRound = (newPoints) => {
+    if (quizConfig.rounds === round) return endGame();
     showNewPoints(newPoints, score, round);
   };
 
-  const onChoseCityInput = (points: number) => {
+  const onChoseCityInput = (points) => {
     isActiveQuiz = false;
     score += points;
     round += 1;

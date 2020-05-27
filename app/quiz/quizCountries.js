@@ -1,9 +1,5 @@
-import { quizCountries } from "./quizConfig";
-
-type Callback = (countryName: string) => void;
-
-export const onClickCountry = (callback: Callback) => {
-  const countries = document.querySelectorAll<HTMLElement>(".card__list-item");
+const onClickCountry = (callback) => {
+  const countries = document.querySelectorAll(".card__list-item");
 
   if (countries.length === 0) return;
   countries.forEach((country) =>
